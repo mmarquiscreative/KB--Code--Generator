@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>xxTitlexx</title>
+  <link rel="stylesheet" href="main.css">
+   
+</head>
+<body>
+<h3>General KB Post Overview</h3>
+<textarea rows="1" cols="70" id="genOverviewHeader" placeholder="General KB Post Overview Header"></textarea>
+ <textarea rows="4" cols="70" id="genOverviewBody" placeholder="General KB Post Overview Body"></textarea>
+ <br/>
+ 
+<h3>General KB Post Overview</h3>
+<input type="number">
+<br/>
+<h3>Resources Used</h3>
+ <div id="resourcesList">
+     <input type="checkbox" name="indesign">&nbsp; Indesign<br/>
+     <input type="checkbox" name="illustrator">&nbsp; Illustrator<br/>
+     <input type="checkbox" name="photoshop">&nbsp; Photoshop<br/>
+     <input type="checkbox" name="mWord">&nbsp; Microsoft Word<br/>
+     <input type="checkbox" name="mExcel">&nbsp; Microsoft Excel<br/>
+     <input type="checkbox" name="mPPT">&nbsp; Microsoft PPT<br/>
+     <input type="checkbox" name="mOutlook">&nbsp; Microsoft Outlook<br/>
+     <input type="checkbox" name="knowledgebase">&nbsp; Knowledgebase<br/>
+     <input type="checkbox" name="HTML">&nbsp; HTML<br/>
+     <input type="checkbox" name="youtube">&nbsp; YouTube<br/>
+     <input type="checkbox" name="quicktime">&nbsp; QuickTime<br/>
+     <input type="checkbox" name="finder">&nbsp; Finder<br/>
+     <input type="checkbox" name="jig">&nbsp; Jig<br/>
+ </div>
+ <br/>
+ <h3>Code Level</h3>
+ <select id="codeLevel">
+     <option value="none" selected="true">None</option>
+     <option value="minstrel" >Minstrel</option>
+     <option value="knight" >Knight</option>
+     <option value="barbarian" >Barbarian</option>
+ </select>
+ <br/>
+ <h3>Callout Options</h3>
+ <div id="calloutList">
+    <select id="calloutsDropdown">
+    <option value="none" selected="true">None</option>
+     <option value="galileo">Galileo</option>
+     <option value="einstein">Albert Einstein</option>
+     <option value="khan">Genghis Khan</option>
+     <option value="polo">Marco Polo</option>
+     <option value="darwin">Charles Darwin</option>
+     <option value="nostradamus">Nostradamus</option>
+     <option value="neptune">Neptune</option>
+     <option value="cleopatra">Cleopatra</option>
+     <option value="b-anthony">Susan B. Anthony</option>
+     <option value="parks">Rosa Parks</option>
+     <option value="fawcett">Millicent Fawcett</option>
+     <option value="curie">Marie Curie</option>
+     <option value="tubman">Harriet Tubman</option>
+     <option value="roosevelt">Eleanor Roosevelt</option>
+     <option value="angelou">Maya Angelou</option>
+     <option value="earhart">Amelia Earhart</option>
+     </select>
+ </div>
+ <br/>
+ <textarea rows="1" cols="70" id="calloutHeader" placeholder="Callout Header"></textarea>
+ <textarea rows="4" cols="70" id="calloutBody" placeholder="Callout Body"></textarea>
+ <br/>
+
+ <button id="addNewCallout">Add Callout</button>
+ <div id="addedCallouts"></div>
+ 
+ <br/>
+ <br/>
+ <h3>Footer Nav Option</h3>
+ <select id="footerNavOptions">
+     
+     <option value="standAlone" selected="true">Stand-Alone Post</option>
+     <option value="multiPostFirst">Multi-page Post (First Page)</option>
+     <option value="multiPostMid">Multi-page Post (Middle Page)</option>
+     <option value="multiPostLast">Multi-page Post (Last Page)</option>
+      <option value="coursePostFirst">Course Post (First Page)</option>
+     <option value="coursePostMid">Course Post (Middle Page)</option>
+     <option value="coursePostLast">Course Post (Last Page)</option>
+ </select>
+ <br/>
+ <div id="URLInput">
+     <textarea class="hidden" id="nextURL" rows="1" cols="70" placeholder="Next Button URL"></textarea>
+     <textarea class="hidden" id="lastURL" rows="1" cols="70" placeholder="Last Button URL"></textarea>
+     <textarea class="hidden" id="courseHomeURL" rows="1" cols="70" placeholder="Course Home URL"></textarea>
+     
+ </div>
+ <br/>
+ <button class="btn" id="compileHTML">Compile KB Post HTML</button>
+ <br/>
+<textarea cols="99" rows="10" id="fullCodeBlock">Code Level HTML here</textarea>
+
+<script src="app.js"></script>
+</body>
+</html>
