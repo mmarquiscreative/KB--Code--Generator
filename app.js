@@ -59,7 +59,10 @@ var UIController = (function(){
             courseHomeURL: '#courseHomeURL',
             URLInput: '#URLInput',
             genOverviewHeader: '#genOverviewHeader',
-            genOverviewBody: '#genOverviewBody'
+            genOverviewBody: '#genOverviewBody',
+            sectionNum: '#sectionNum',
+            saveCurrentInput:'#saveCurrentInput'
+            
         },
         footerNavValues: {
             standAlone: 'standAlone',
@@ -71,8 +74,13 @@ var UIController = (function(){
             coursePostLast: 'coursePostLast'
         },
         generalOverviewHTML: 'generalSection',
-        overviewFrontHTML: '<div class="overview"><div class="overviewOutline"><h4>Outline</h4><ol><li><a href="#section1">Section 1</a></li><li><a href="#section2">Section 2</a></li><li><a href="#section3">Section 3</a></li><li><a href="#section4">Section 4</a></li><li><a href="#section5">Section 5</a></li></ol></div>',
+        overviewFrontHTML: '<div class="overview">',
         overviewBackHTML: '</div></div>',
+        sectionHTML:{
+            frontHTML: '<div class="overviewOutline"><h4>Outline</h4><ol>',
+            itemHTML: '<li><a href="#sectionreplace">Section replace</a></li>',
+            endHTML: '</ol></div>'
+        },
         codeLevels: {
             minstrel: '<!-- Code Level 1: Minstrel --><h4 class="code-level1"><strong>Code Difficulty:</strong> Minstrel</h4><div class="code-level1"></div>',
                 
@@ -195,6 +203,26 @@ var appController = (function(dataCtrl, UICtrl){
         document.querySelector(UICtrl.HTMLStrings.ids.codeLevelHTML).textContent = someString;
     };
     */
+    
+    function loadHTML__Sections(){
+        var howMany = parseInt(document.querySelector(UICtrl.HTMLStrings.ids.sectionNum).value);
+        
+        var allSections = '';
+        
+        for (i = 0; i < howMany; i++){
+            var tempString = UICtrl.HTMLStrings.sectionHTML.itemHTML;
+            
+            var newString = tempString.replace(/replace/g, (i + 1));
+               
+            allSections += newString;
+        };
+        
+        allSections = (UICtrl.HTMLStrings.sectionHTML.frontHTML + allSections + UICtrl.HTMLStrings.sectionHTML.endHTML);
+        
+        return allSections;
+
+    };
+    
     function loadHTML__Callout(){
         var fullCalloutCode = '';
         var calloutNodeList = document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).children;
@@ -301,6 +329,9 @@ var appController = (function(dataCtrl, UICtrl){
         
         // Overview Block Code
         var overviewFrontBlock = UICtrl.HTMLStrings.overviewFrontHTML;
+        
+        // sections needed
+        var sectionsBlock = loadHTML__Sections();
         var resourcesBlock = loadHTML__ResourcesUsed();
         var codeLevelBlock = loadHTML__CodeLevel();
         var overviewLastBlock = UICtrl.HTMLStrings.overviewBackHTML;
@@ -312,7 +343,7 @@ var appController = (function(dataCtrl, UICtrl){
         // Footer Nav Block Code
         var footerNavBlock = loadHTML__FooterNav();
         
-        var compiledCode = '<div id="' + UICtrl.HTMLStrings.generalOverviewHTML + '">\n<h3>' + generalOverviewStrings.overviewHeader + '</h3>\n' + generalOverviewStrings.overviewBody + '</div>'+ overviewFrontBlock + resourcesBlock + codeLevelBlock + overviewLastBlock + '<hr/><br/><br/>KB Post Content Here<br/><br/><hr/>' + calloutBlocks + footerNavBlock;
+        var compiledCode = '<div id="' + UICtrl.HTMLStrings.generalOverviewHTML + '">\n<h3>' + generalOverviewStrings.overviewHeader + '</h3>\n' + generalOverviewStrings.overviewBody + '</div>'+ overviewFrontBlock + sectionsBlock + resourcesBlock + codeLevelBlock + overviewLastBlock + '<hr/><br/><br/>KB Post Content Here<br/><br/><hr/>' + calloutBlocks + footerNavBlock;
         
         document.querySelector(UICtrl.HTMLStrings.ids.fullCodeBlock).value = compiledCode;
         
@@ -433,6 +464,23 @@ var appController = (function(dataCtrl, UICtrl){
         });
         return allResourcesHTML;
     };
+    function allValuesByType(someInputType){
+        var someArray = listToArray(document.querySelectorAll(someInputType));
+    var someArrayValues = [];
+        someArray.forEach(function(cur){
+            someArrayValues.push(cur.value);
+        });
+        return someArrayValues;
+    };
+    function saveCurInput(){
+        console.log('saving current input');
+       var selectValues = allValuesByType('select');
+        var textareaValues = allValuesByType('textarea');
+        var inputValues = allValuesByType('input')
+        console.log(selectValues);
+        console.log(textareaValues);
+        console.log(inputValues);
+    };
     
     function innit(){
         document.querySelector(UICtrl.HTMLStrings.ids.compileHTML).addEventListener('click', loadAllHTML);
@@ -448,6 +496,8 @@ var appController = (function(dataCtrl, UICtrl){
             document.execCommand('copy');
             console.log('click recognized');
         });
+        
+        document.querySelector(UICtrl.HTMLStrings.ids.saveCurrentInput).addEventListener('click', saveCurInput);
         
     };
     return {

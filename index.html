@@ -8,12 +8,12 @@
 </head>
 <body>
 <h3>General KB Post Overview</h3>
-<textarea rows="1" cols="70" id="genOverviewHeader" placeholder="General KB Post Overview Header"></textarea>
- <textarea rows="4" cols="70" id="genOverviewBody" placeholder="General KB Post Overview Body"></textarea>
+<textarea rows="1" cols="99" id="genOverviewHeader" placeholder="General KB Post Overview Header"></textarea>
+ <textarea rows="4" cols="99" id="genOverviewBody" placeholder="General KB Post Overview Body"></textarea>
  <br/>
  
 <h3>General KB Post Overview</h3>
-<input type="number">
+<input id="sectionNum" placeholder="How many sections?" type="number">
 <br/>
 <h3>Resources Used</h3>
  <div id="resourcesList">
@@ -63,8 +63,8 @@
      </select>
  </div>
  <br/>
- <textarea rows="1" cols="70" id="calloutHeader" placeholder="Callout Header"></textarea>
- <textarea rows="4" cols="70" id="calloutBody" placeholder="Callout Body"></textarea>
+ <textarea rows="1" cols="99" id="calloutHeader" placeholder="Callout Header"></textarea>
+ <textarea rows="4" cols="99" id="calloutBody" placeholder="Callout Body"></textarea>
  <br/>
 
  <button id="addNewCallout">Add Callout</button>
@@ -85,13 +85,14 @@
  </select>
  <br/>
  <div id="URLInput">
-     <textarea class="hidden" id="nextURL" rows="1" cols="70" placeholder="Next Button URL"></textarea>
-     <textarea class="hidden" id="lastURL" rows="1" cols="70" placeholder="Last Button URL"></textarea>
-     <textarea class="hidden" id="courseHomeURL" rows="1" cols="70" placeholder="Course Home URL"></textarea>
+     <textarea class="hidden" id="nextURL" rows="1" cols="99" placeholder="Next Button URL"></textarea>
+     <textarea class="hidden" id="lastURL" rows="1" cols="99" placeholder="Last Button URL"></textarea>
+     <textarea class="hidden" id="courseHomeURL" rows="1" cols="99" placeholder="Course Home URL"></textarea>
      
  </div>
  <br/>
  <button class="btn" id="compileHTML">Compile KB Post HTML</button>
+ <button class="btn" id="saveCurrentInput">Save Current Input</button>
  <br/>
 <textarea cols="99" rows="10" id="fullCodeBlock">Code Level HTML here</textarea>
 
