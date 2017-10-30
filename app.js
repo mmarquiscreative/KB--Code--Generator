@@ -61,8 +61,19 @@ var UIController = (function(){
             genOverviewHeader: '#genOverviewHeader',
             genOverviewBody: '#genOverviewBody',
             sectionNum: '#sectionNum',
-            saveCurrentInput:'#saveCurrentInput'
+            saveCurrentInput:'#saveCurrentInput',
+            loadLastSave: '#loadLastSave',
+            previousSave: '#previousSave',
+            saveCode: '#saveCode',
+            previousSave: '#previousSave'
             
+        },
+        classes:{
+            inputNode: '.inputNode',
+            inputNodeVal: 'inputNode value',
+            inputNodeTxt: 'inputNode textContent',
+            inputNodeChk: 'inputNode checked',
+            inputNodeSplit: 'inputNode splitString'
         },
         footerNavValues: {
             standAlone: 'standAlone',
@@ -140,19 +151,19 @@ var UIController = (function(){
     //// FUNCTIONS ////
     function loadFooterStates(someBoolNext, someBoolLast, someBoolCourse){
         if(someBoolNext){
-            document.querySelector(HTMLStrings.ids.nextURL).className = '';
+            document.querySelector(HTMLStrings.ids.nextURL).className = (HTMLStrings.classes.inputNodeVal);
         } else {
             document.querySelector(HTMLStrings.ids.nextURL).className = 'hidden';
         };
         
         if(someBoolLast){
-            document.querySelector(HTMLStrings.ids.lastURL).className = '';
+            document.querySelector(HTMLStrings.ids.lastURL).className = (HTMLStrings.classes.inputNodeVal);
         } else {
             document.querySelector(HTMLStrings.ids.lastURL).className = 'hidden';
         };
         
         if(someBoolCourse){
-            document.querySelector(HTMLStrings.ids.courseHomeURL).className = '';
+            document.querySelector(HTMLStrings.ids.courseHomeURL).className = (HTMLStrings.classes.inputNodeVal);
         } else {
             document.querySelector(HTMLStrings.ids.courseHomeURL).className = 'hidden';
         };
@@ -258,7 +269,7 @@ var appController = (function(dataCtrl, UICtrl){
         
         var calloutBodyString = document.querySelector(UICtrl.HTMLStrings.ids.calloutBody).value;
         
-        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p>' + optionNameString + '__' + calloutHeaderString + '__' + calloutBodyString)
+        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p class="' + UICtrl.HTMLStrings.classes.inputNodeSplit + '">' + optionNameString + '__' + calloutHeaderString + '__' + calloutBodyString)
         console.log(optionNameString + ' ' + calloutHeaderString + ' ' + calloutBodyString);
         
         resetCalloutInput();
@@ -357,7 +368,7 @@ var appController = (function(dataCtrl, UICtrl){
         
         footerTextareaArray.forEach(function(cur){
             console.log(cur.className);
-            if(cur.className !== 'hidden'){
+            if(cur.className === 'inputNode'){
                 footerURLArray.push(cur.value);
             };
         });
@@ -464,22 +475,96 @@ var appController = (function(dataCtrl, UICtrl){
         });
         return allResourcesHTML;
     };
-    function allValuesByType(someInputType){
-        var someArray = listToArray(document.querySelectorAll(someInputType));
+    function checkAttribute(targetID, targetAttribute){
+        var someArray = listToArray(document.querySelectorAll(targetID));
     var someArrayValues = [];
         someArray.forEach(function(cur){
-            someArrayValues.push(cur.value);
+            someArrayValues.push(cur[targetAttribute]);
         });
         return someArrayValues;
     };
     function saveCurInput(){
-        console.log('saving current input');
-       var selectValues = allValuesByType('select');
-        var textareaValues = allValuesByType('textarea');
-        var inputValues = allValuesByType('input')
-        console.log(selectValues);
-        console.log(textareaValues);
-        console.log(inputValues);
+        var inputNodeArray, attributeString;
+        attributeString = '';
+        inputNodeArray = listToArray(document.querySelectorAll('.inputNode'));
+        
+        inputNodeArray.forEach(function(cur){
+                              // push either value, textContent or a string to split to attributeArray
+                        switch (cur.className){
+                            case UICtrl.HTMLStrings.classes.inputNodeVal:
+                                console.log(cur.id);
+                                console.log(cur.value);
+                                attributeString += '||' + cur.className + '&&&' + '#' + cur.id + '&&&' + cur.value;
+                                break;
+                            case UICtrl.HTMLStrings.classes.inputNodeChk:
+                                console.log(cur.name);
+                                console.log(cur.checked);
+                                attributeString += '||' + cur.className + '&&&' + '#' + cur.id + '&&&' + cur.checked;
+                                break;
+                            case UICtrl.HTMLStrings.classes.inputNodeTxt:
+                                console.log(cur.id);
+                                console.log(cur.textContent);
+                                attributeString += '||' + cur.className + '&&&' + '#' + cur.id + '&&&' + cur.textContent;
+                                break;
+                            case UICtrl.HTMLStrings.classes.inputNodeSplit:
+                                console.log(cur.id);
+                                console.log(cur.textContent.split('__'));
+                                attributeString += '||' + cur.className + '&&&' + '#' + cur.id + '&&&' + cur.textContent;
+                                break;
+                            default:
+                                console.log(cur.className);
+                                break;
+                            };
+    });
+        // remove first || to avoid having an empty first array when split during load
+        attributeString = attributeString.slice(2);
+        document.querySelector(UICtrl.HTMLStrings.ids.saveCode).value = attributeString;
+    };
+    
+    function stringToBool(someString){
+        var returnBool;
+        if(someString === 'true'){
+                returnBool = true;
+            } else if (someString === 'false'){
+                returnBool = false;
+            };
+        return returnBool;
+    };
+    
+    function loadSavedSplitStr(someString){
+        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p class="' + UICtrl.HTMLStrings.classes.inputNodeSplit + '">' + someString + '</p>');
+    };
+    
+    function loadSave(){
+        var inputArray = [];
+        var splitString = document.querySelector(UICtrl.HTMLStrings.ids.previousSave).value;
+        
+        inputArray = splitString.split('||');
+        
+        inputArray.forEach(function(cur){
+            var tempArray = cur.split('&&&');
+            var whichAttribute = tempArray[0].split(' ');
+            
+            // check if bool, convert string to bool
+            if(tempArray[2] === 'true' || tempArray[2] === 'false'){
+                tempArray[2] = stringToBool(tempArray[2]);
+            };
+            
+            if(whichAttribute[1] === 'splitString'){
+                loadSavedSplitStr(tempArray[2]);
+            } else if(document.querySelector(tempArray[1]).parentElement.id === 'URLInput'){
+                var tempNode = document.querySelector(tempArray[1]);
+                      tempNode.className = UICtrl.HTMLStrings.classes.inputNodeVal;
+                tempNode.value = tempArray[2];
+                
+                      } else {
+            document.querySelector(tempArray[1])[whichAttribute[1]] = tempArray[2];
+            console.log(document.querySelector(tempArray[1])[whichAttribute[1]]);
+            console.log(tempArray);
+            };
+        });
+
+        
     };
     
     function innit(){
@@ -497,7 +582,16 @@ var appController = (function(dataCtrl, UICtrl){
             console.log('click recognized');
         });
         
+        document.querySelector(UICtrl.HTMLStrings.ids.saveCode).addEventListener('click', function(){
+            console.log(this.textContent);
+           var tempNode =  document.querySelector(UICtrl.HTMLStrings.ids.saveCode)
+           tempNode.select();
+            document.execCommand('copy');
+            console.log('click recognized');
+        });
         document.querySelector(UICtrl.HTMLStrings.ids.saveCurrentInput).addEventListener('click', saveCurInput);
+        
+        document.querySelector(UICtrl.HTMLStrings.ids.loadLastSave).addEventListener('click', loadSave);
         
     };
     return {
