@@ -596,7 +596,7 @@ var appController = (function(dataCtrl, UICtrl){
     };
     return {
        innit: innit
-    }
+    };
 })(dataController, UIController);
 
 
