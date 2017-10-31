@@ -1,27 +1,10 @@
 *{
     font-family: "Open Sans", sans-serif;
-    margin-bottom: .5rem;
-    -webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-body{
-    background-color: #d3d3d3;
+    margin: .25rem;
 }
 
 *:focus{
     outline:none;
-}
-
-.cardBG{
-    background-color: #fff;
-    border-radius: 15px;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    padding-top: 2.8rem;
-    box-shadow: 1px 1px 5px #a6a6a6;
-    
 }
 
 .hidden {
@@ -33,27 +16,9 @@ h3 {
     margin-top: 1rem;
 }
 
-.header{
-    background-color: #383838;
-    padding: .8rem;
-    padding-left: 1rem;
-    margin-bottom: -2.8rem;
-    color: #cccccc;
-    font-weight:200;
-    border-radius: 15px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    position: relative;
-    z-index: 100;
-    
-    
-}
-
-
-
 hr{
     outline-style: none;
-    border: .5px solid #fff;
+    border: .5px solid #ffd299;
     -webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -72,23 +37,6 @@ appearance:none;
     background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
 }*/
 
-#deleteX {
-    padding: 0rem .3rem;
-    border-radius: 50px;
-      
-    margin-left: .5rem;
-    color: #eab4b2;
-}
-
-#deleteX:hover {
-    color: #e86761;
-    background-color: #eab4b2;
-}
-
-#deleteX:active {
-    color: #fff;
-    background-color: #e86761;
-}
 
 textarea, input[type="number"]{
     border: 1px solid #a6a6a6;
@@ -98,21 +46,15 @@ textarea, input[type="number"]{
 
 
 select{
-    color: #707070;
+    color: #f8f8f8;
 }
 button, textarea, input, option {
     padding: .5rem;
 }
 
-#sectionNum {
-    padding-top: 0;
-    padding-bottom: 0;
-    
-}
-
 select, button, input[type="number"] {
     height: 2rem;
-    width: 100;
+    width: 10rem;
     
 }
 
@@ -170,11 +112,8 @@ input[type=checkbox]{
     margin-bottom: .5rem;
 }
 
-textarea {
-    width: 100%;
-    margin: 0 0 .5rem 0;
-    
-    
+textarea{
+    width: 96%;
 }
 
 #overviewBlock, #resourcesBlock{
@@ -189,46 +128,10 @@ textarea {
 #resourcesBlock{
     width: 35%;
 }
-
-#HTMLBlock{
-    
+#HTMLBlock, #saveBlock, #loadBlock{
+    display: inline-block;
+    width: 28%;
 }
 #saveBlock {
-    margin: 0rem 1rem;
+    margin: 0rem 2rem;
 }
-#loadBlock {
-    margin-right: 0rem;
-}
-
-#HTMLBlock, #saveBlock, #loadBlock{
-    display: table-cell;
-    width: 33%;
-    text-align: left;
-    padding: .5rem;;
-    
-}
-#lastCodeBlocks{
-    display: table;
-}
-
-#lastCodeBlocks, #lastCodeBlocks button{
-    -webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-
-	width: 100%;
-    
-    padding: 0;
-    margin: 0;
-}
-
-#lastCodeBlocks textarea {
-    text-align: center;
-    margin: 0 0 .5rem 0;
-    -webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-
-	width: 100%;
-}
-

@@ -65,8 +65,7 @@ var UIController = (function(){
             loadLastSave: '#loadLastSave',
             previousSave: '#previousSave',
             saveCode: '#saveCode',
-            previousSave: '#previousSave',
-            deleteX: '#deleteX'
+            previousSave: '#previousSave'
             
         },
         classes:{
@@ -270,7 +269,7 @@ var appController = (function(dataCtrl, UICtrl){
         
         var calloutBodyString = document.querySelector(UICtrl.HTMLStrings.ids.calloutBody).value;
         
-        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p class="' + UICtrl.HTMLStrings.classes.inputNodeSplit + '">' + optionNameString + '__' + calloutHeaderString + '__' + calloutBodyString + '<span id="deleteX">&#x2715;</span></p>')
+        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p class="' + UICtrl.HTMLStrings.classes.inputNodeSplit + '">' + optionNameString + '__' + calloutHeaderString + '__' + calloutBodyString)
         console.log(optionNameString + ' ' + calloutHeaderString + ' ' + calloutBodyString);
         
         resetCalloutInput();
@@ -533,7 +532,7 @@ var appController = (function(dataCtrl, UICtrl){
     };
     
     function loadSavedSplitStr(someString){
-       someString = someString.slice(0, -1); document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p class="' + UICtrl.HTMLStrings.classes.inputNodeSplit + '">' + someString + '<span id="deleteX">&#x2715;</span></p>');
+        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).innerHTML += ('<p class="' + UICtrl.HTMLStrings.classes.inputNodeSplit + '">' + someString + '</p>');
     };
     
     function loadSave(){
@@ -545,7 +544,7 @@ var appController = (function(dataCtrl, UICtrl){
         inputArray.forEach(function(cur){
             var tempArray = cur.split('&&&');
             var whichAttribute = tempArray[0].split(' ');
-            console.log(tempArray[1]);
+            
             // check if bool, convert string to bool
             if(tempArray[2] === 'true' || tempArray[2] === 'false'){
                 tempArray[2] = stringToBool(tempArray[2]);
@@ -567,10 +566,6 @@ var appController = (function(dataCtrl, UICtrl){
 
         
     };
-    
-    function deleteCallout(){
-          
-    }
     
     function innit(){
         document.querySelector(UICtrl.HTMLStrings.ids.compileHTML).addEventListener('click', loadAllHTML);
@@ -597,13 +592,6 @@ var appController = (function(dataCtrl, UICtrl){
         document.querySelector(UICtrl.HTMLStrings.ids.saveCurrentInput).addEventListener('click', saveCurInput);
         
         document.querySelector(UICtrl.HTMLStrings.ids.loadLastSave).addEventListener('click', loadSave);
-        
-        document.querySelector(UICtrl.HTMLStrings.ids.addedCallouts).addEventListener('click', function(target, event){
-            console.log(target.target.localName);
-            if(target.target.localName === 'span'){
-                target.target.parentNode.outerHTML = '';
-            };
-        });
         
     };
     return {

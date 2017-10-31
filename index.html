@@ -7,15 +7,24 @@
    
 </head>
 <body>
+<h4 class="header">1. Overview Section</h4>
+<div class="cardBG">
+<div id="overviewBlock">
 <h3>General KB Post Overview</h3>
-<textarea class="inputNode value" rows="1" cols="99" id="genOverviewHeader" placeholder="General KB Post Overview Header"></textarea>
- <textarea class="inputNode value" rows="4" cols="99" id="genOverviewBody" placeholder="General KB Post Overview Body"></textarea>
- <br/>
- 
+<textarea class="inputNode value" rows="2" cols="99" id="genOverviewHeader" placeholder="General KB Post Overview Header"></textarea>
+ <textarea class="inputNode value" rows="11" cols="99" id="genOverviewBody" placeholder="General KB Post Overview Body"></textarea>
 <h3>General KB Post Overview</h3>
 <input class="inputNode value" id="sectionNum" placeholder="How many sections?" type="number">
-<br/>
-<h3>Resources Used</h3>
+<h3>Code Level</h3>
+ <select class="inputNode value" id="codeLevel">
+     <option value="none" selected="true">None</option>
+     <option value="minstrel" >Minstrel</option>
+     <option value="knight" >Knight</option>
+     <option value="barbarian" >Barbarian</option>
+ </select>
+</div>
+<div id="resourcesBlock">
+<h3 class='firstHeader'>Resources Used</h3>
  <div id="resourcesList">
      <input id="indesignChk"class="inputNode checked" type="checkbox" name="indesign"><img src="Icons/icon_KB_0006_Indesign-CC.png"/> Indesign<br/>
      <input class="inputNode checked" id="illustratorChk" type="checkbox" name="illustrator"><img src="Icons/icon_KB_0008_Illustrator-CC.png"/> Illustrator<br/>
@@ -31,17 +40,11 @@
      <input class="inputNode checked" id="finderChk"type="checkbox" name="finder"><img src="Icons/icon_KB_0001_ServerFinder.png"/> Finder<br/>
      <input class="inputNode checked" id="jigChk"type="checkbox" name="jig"><img src="Icons/icon_KB_0000_Jig-logo.png"/> Jig<br/>
  </div>
- <br/>
- <h3>Code Level</h3>
- <select class="inputNode value" id="codeLevel">
-     <option value="none" selected="true">None</option>
-     <option value="minstrel" >Minstrel</option>
-     <option value="knight" >Knight</option>
-     <option value="barbarian" >Barbarian</option>
- </select>
- <br/>
+ </div>
+ </div>
+ <h4 class="header">2. Callouts and Footer Nav</h4>
+ <div class="cardBG">
  <h3>Callout Options</h3>
- <div id="calloutList">
     <select id="calloutsDropdown">
     <option value="none" selected="true">None</option>
      <option value="galileo">Galileo</option>
@@ -61,20 +64,13 @@
      <option value="angelou">Maya Angelou</option>
      <option value="earhart">Amelia Earhart</option>
      </select>
- </div>
- <br/>
  <textarea rows="1" cols="99" id="calloutHeader" placeholder="Callout Header"></textarea>
  <textarea rows="4" cols="99" id="calloutBody" placeholder="Callout Body"></textarea>
- <br/>
-
  <button id="addNewCallout">Add Callout</button>
  <div id="addedCallouts"></div>
- 
- <br/>
- <br/>
+
  <h3>Footer Nav Option</h3>
  <select class="inputNode value" id="footerNavOptions">
-     
      <option value="standAlone" selected="true">Stand-Alone Post</option>
      <option value="multiPostFirst">Multi-page Post (First Page)</option>
      <option value="multiPostMid">Multi-page Post (Middle Page)</option>
@@ -83,33 +79,39 @@
      <option value="coursePostMid">Course Post (Middle Page)</option>
      <option value="coursePostLast">Course Post (Last Page)</option>
  </select>
- <br/>
  <div id="URLInput">
      <textarea class="hidden" id="nextURL" rows="1" cols="99" placeholder="Next Button URL"></textarea>
      <textarea class="hidden" id="lastURL" rows="1" cols="99" placeholder="Last Button URL"></textarea>
      <textarea class="hidden" id="courseHomeURL" rows="1" cols="99" placeholder="Course Home URL"></textarea>
      
  </div>
- <br/>
- <br/>
- <hr/>
+    </div>
+    
+    <h4 class="header">3. Compile, Save, or Load Code</h4>
+<div class="cardBG">
+<div id="lastCodeBlocks"><div id="HTMLBlock">
  <h3>HMTL Code</h3>
 <textarea cols="99" rows="5" id="fullCodeBlock" placeholder="KB Post HTML will generate here"></textarea>
-<br/>
 <button class="btn" id="compileHTML">Get HTML Code</button>
- <br/>
-<br/>
+</div>
+
+<div id="saveBlock">
 <h3>Save Settings</h3>
 <textarea cols="99" rows="5" id="saveCode" placeholder="Save the current settings with a save code"></textarea>
-<br/>
 <button class="btn" id="saveCurrentInput">Get Save Code</button>
- <br/>
-<br/>
+</div>
+
+<div id="loadBlock">
 <h3>Load Settings</h3>
 <textarea cols="99" rows="5" id="previousSave" placeholder="Use a save code to load a previous settings state"></textarea>
-<br/>
 <button class="btn" id="loadLastSave">Load Save Code</button>
+</div>
+    </div>
+    </div>
 
 <script src="app.js"></script>
 </body>
 </html>
+
+
+
