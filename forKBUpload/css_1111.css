@@ -6,58 +6,9 @@
 	box-sizing: border-box;
 }
 
-.toolTip{
-    font-size: .8rem;
-    display: inline-block;
-    color: #fff;
-    background-color: #d3d3d3;
-    padding: .1rem;
-    border-radius: 100%;
-    margin-left: 1rem;
-    
-}
-.toolTip:active + .toolTipBox{
-    visibility: visible;
-}
-
 body{
-    padding: 1rem;
     background-color: #d3d3d3;
 }
-
-.fade{
-    opacity: .5;
-    filter: blur(2px);
-}
-
-#helpPopup {
-    margin: 0 auto;
-    right: 0px;
-    bottom: 20px;
-    width: 70%;
-    height: 95%;
-    background-color: #fff;
-    text-align: left;
-    padding: .25rem 0 0 1rem;
-    border-radius: 6px;
- 
-    /* Position the tooltip text - see examples below! */
-    position: fixed;
-    z-index: 101;
-    box-shadow: -1px 0px 15px #383838;
-    overflow: auto;
-    opacity: 100%;
-    
-}
-
-#helpPopup img {
-    width: 100%;
-}
-
-#helpPopup h4{
-    color: #383838;
-}
-
 
 *:focus{
     outline:none;
@@ -121,34 +72,23 @@ appearance:none;
     background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
 }*/
 
-#deleteX, #deleteXhelp {
-    font-size: 1rem;
+#deleteX {
     padding: 0rem .3rem;
     border-radius: 50px;
-    height: 1rem;
-    width: 2rem;
+      
     margin-left: .5rem;
     color: #eab4b2;
 }
 
-#deleteX:hover, #deleteXhelp:hover {
+#deleteX:hover {
     color: #e86761;
     background-color: #eab4b2;
 }
 
-#deleteX:active, #deleteXhelp:active {
+#deleteX:active {
     color: #fff;
     background-color: #e86761;
 }
-#deleteXhelp {
-    float: right;
-    padding-top: .05rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: .5rem;
-    margin-top: -1rem;
-}
-
 
 textarea, input[type="number"]{
     border: 1px solid #a6a6a6;
@@ -172,7 +112,7 @@ button, textarea, input, option {
 
 select, button, input[type="number"] {
     height: 2rem;
-    width: 10rem;
+    width: 100;
     
 }
 
@@ -200,38 +140,15 @@ button:active {
     background-color: #ffb550;
     border-bottom: 3px solid #d68a31;
 }
+
+#addNewCallout:active{
+border: none;
+    border-top: 2px solid #d68a31;
+}
 #addNewCallout:hover{
     background-color: #ffc272;
     border-bottom: 3px solid #d68a31;
 }
-
-#addNewCallout:active{
-border: none;
-    background-color: #ffb550;
-    border-top: 2px solid #d68a31;
-}
-
-#resetAll{
-    
-    display:block; 
-    margin:0 auto;
-    margin-top: 1rem;
-    width: 25%;
-    background-color: #e86761;
-    border-bottom: 3px solid #b84648;
-}
-
-#resetAll:hover{
-    background-color: #ed8d88;
-    border-bottom: 3px solid #b84648;
-}
-
-#resetAll:active{
-border: none;
-    background-color: #e86761;
-    border-top: 2px solid #b84648;
-}
-
 
 
 button:focus{
@@ -240,17 +157,17 @@ button:focus{
 
 
 input + img {
-    vertical-align: top;
-    margin-top: .25rem;
+    vertical-align: middle;
+    margin-top: .5rem;
     margin-bottom: .0rem;
     margin-left: .5rem;
     margin-right: .25rem;
 }
 
 input[type=checkbox]{
+    font-size: x-large;
     margin-top: .5rem;
     margin-bottom: .5rem;
-  vertical-align: middle;
 }
 
 textarea {
@@ -270,7 +187,6 @@ textarea {
 }
 
 #resourcesBlock{
-    margin-left: .5rem;
     width: 35%;
 }
 
@@ -293,8 +209,6 @@ textarea {
 }
 #lastCodeBlocks{
     display: table;
-    padding: 0;
-    margin: 0;
 }
 
 #lastCodeBlocks, #lastCodeBlocks button{
@@ -318,44 +232,3 @@ textarea {
 	width: 100%;
 }
 
-/* hide standard checkbox */
-input[type="checkbox"] {
-    margin-right: .7rem;
-    margin-bottom: .7rem;
-    -moz-appearance: none!important;
-    -webkit-appearance: none!important;
-    width: 19px!important;
-    height:19px!important;
-    background: url('http://knowledgebases.wpengine.com/wp-content/uploads/2017/05/KB_CheckBox2-1.png') left 0px top 0px no-repeat!important;
-}
-
-input[type="checkbox"]:hover {
-    -moz-appearance: none!important;
-    -webkit-appearance: none!important;
-    width: 19px!important;
-    height:19px!important;
-    background: url('http://knowledgebases.wpengine.com/wp-content/uploads/2017/05/KB_CheckBox2-1.png') left -19px top 0px no-repeat!important;
-}
-
-input[type="checkbox"]:checked {
-    -moz-appearance: none!important;
-    -webkit-appearance: none!important;
-    width: 19px!important;
-    height:19px!important;
-    background: url('http://knowledgebases.wpengine.com/wp-content/uploads/2017/05/KB_CheckBox2-1.png') left -38px top 0px no-repeat!important;
-}
-
-input[type="checkbox"]:checked:hover {
-    -moz-appearance: none!important;
-    -webkit-appearance: none!important;
-    width: 19px!important;
-    height:19px!important;
-    background: url('http://knowledgebases.wpengine.com/wp-content/uploads/2017/05/KB_CheckBox2-1.png') left -57px top 0px no-repeat!important;
-}
-
-input:focus {
-    outline: none !important;
-}
-textarea{
-  padding-bottom: 0;
-}

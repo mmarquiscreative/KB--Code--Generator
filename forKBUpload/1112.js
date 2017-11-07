@@ -66,21 +66,15 @@ var UIController = (function(){
             previousSave: '#previousSave',
             saveCode: '#saveCode',
             previousSave: '#previousSave',
-            deleteX: '#deleteX',
-            resetAll: '#resetAll',
-            postAuthor: '#postAuthor'
+            deleteX: '#deleteX'
             
-        },
-        authorCodes:{
-            mmarquis: '<div class="authorBlock clearfix"><div class="postAuthor"><div id="mmarquis" class="authorImg"></div><h4><strong>Matt Marquis</strong>mmarquis@audigy.com</h4></div><div class="expertiseBlock"><div id="htmlX"><!-- noContent --></div><div id="cssX"><!-- noContent --></div><div id="jsX"><!-- noContent --></div><div id="aiX"><!-- noContent --></div><div id="inX"><!-- noContent --></div><div id="psX"><!-- noContent --></div><div id="kbX"><!-- noContent --></div></div></div>'
         },
         classes:{
             inputNode: '.inputNode',
             inputNodeVal: 'inputNode value',
             inputNodeTxt: 'inputNode textContent',
             inputNodeChk: 'inputNode checked',
-            inputNodeSplit: 'inputNode splitString',
-            resultBlock: '.resultBlock'
+            inputNodeSplit: 'inputNode splitString'
         },
         footerNavValues: {
             standAlone: 'standAlone',
@@ -151,8 +145,7 @@ var UIController = (function(){
             coursePostFirst: '<div class="botnav-alpha">\n<h5><span class="botnav-pgnum">(Step X of X)</span><a class="btn" href="__">Next Step</a></h5>\n</div>\n<div class="botnav-beta" style="text-align: right;">\n<a href="#top">Return to Top</a> — <a href="__">Course Overview</a></div>\n&nbsp;\n\n<hr />',
             coursePostMid: '<div class="botnav-alpha">\n<h5><a class="btn" href="__">Previous Step</a><span class="botnav-pgnum">(Step X of X)</span><a class="btn" href="__">Next Step</a></h5>\n</div>\n<div class="botnav-beta" style="text-align: right;">\n<a href="#top">Return to Top</a> — <a href="__">Course Overview</a></div>\n&nbsp;\n\n<hr />',
             coursePostLast: '<div class="botnav-alpha">\n<h5>\n<a class="btn" href="__">Previous Step</a>\n<span class="botnav-pgnum">(Step X of X)</span>\n</h5>\n</div>\n<div class="botnav-beta" style="text-align: right;">\n<a href="#top">Return to Top</a> — <a href="__">Course Overview</a></div>\n&nbsp;\n\n<hr />'
-        },
-        feedbackSection: '<!-- ********************* Feedback Section ********************* -->[contact-form to="mmarquis@audigy.com" subject="KB Post Issue or Comment"][contact-field label="Email" type="email" required="1"/][contact-field label="Report Error or Share Feedback" type="textarea" required="1"/][/contact-form]'
+        }
     };
     
     
@@ -317,7 +310,7 @@ var appController = (function(dataCtrl, UICtrl){
     };
     
     function loadHTML__GeneralOverview(){
-        var overviewHeader, overviewBody, overviewAuthor, authorString;
+        var overviewHeader, overviewBody;
         
         // save general overview header string
         overviewHeader = document.querySelector(UICtrl.HTMLStrings.ids.genOverviewHeader).value;
@@ -325,16 +318,9 @@ var appController = (function(dataCtrl, UICtrl){
         // save general overview body string
         overviewBody = document.querySelector(UICtrl.HTMLStrings.ids.genOverviewBody).value;
         
-        // author block
-        overviewAuthor = document.querySelector(UICtrl.HTMLStrings.ids.postAuthor).value;
-        
-        authorString = UICtrl.HTMLStrings.authorCodes[overviewAuthor];
-        
-        
         return {
             overviewHeader: overviewHeader,
-            overviewBody: overviewBody,
-            authorString: authorString
+            overviewBody: overviewBody
         }
     }
     
@@ -369,7 +355,7 @@ var appController = (function(dataCtrl, UICtrl){
         // Footer Nav Block Code
         var footerNavBlock = loadHTML__FooterNav();
         
-        var compiledCode = generalOverviewStrings.authorString + '<div id="' + UICtrl.HTMLStrings.generalOverviewHTML + '">\n<h3>' + generalOverviewStrings.overviewHeader + '</h3>\n' + generalOverviewStrings.overviewBody + '</div>'+ overviewFrontBlock + sectionsBlock + resourcesBlock + codeLevelBlock + overviewLastBlock + '<hr/><br/><br/>KB Post Content Here<br/><br/><hr/>' + calloutBlocks + footerNavBlock + UICtrl.HTMLStrings.feedbackSection;
+        var compiledCode = '<div id="' + UICtrl.HTMLStrings.generalOverviewHTML + '">\n<h3>' + generalOverviewStrings.overviewHeader + '</h3>\n' + generalOverviewStrings.overviewBody + '</div>'+ overviewFrontBlock + sectionsBlock + resourcesBlock + codeLevelBlock + overviewLastBlock + '<hr/><br/><br/>KB Post Content Here<br/><br/><hr/>' + calloutBlocks + footerNavBlock;
         
         document.querySelector(UICtrl.HTMLStrings.ids.fullCodeBlock).value = compiledCode;
         
@@ -582,48 +568,12 @@ var appController = (function(dataCtrl, UICtrl){
         
     };
     
-    function resetAllInput(){
-       var inputNodeArray, attributeString;
-        attributeString = '';
-        inputNodeArray = listToArray(document.querySelectorAll('.inputNode'));
-        
-        inputNodeArray.forEach(function(cur){
-                              // push either value, textContent or a string to split to attributeArray
-                        switch (cur.className){
-                            case UICtrl.HTMLStrings.classes.inputNodeVal:
-                                console.log(cur.id);
-                                cur.value = '';
-                                if(cur.id === 'codeLevel' || cur.id === 'postAuthor'){
-                                    cur.value = 'none';
-                                } else if(cur.id === 'footerNavOptions'){
-                                    cur.value = 'standAlone';
-                                    UICtrl.loadFooterStates(false, false, false);
-                                };
-                                break;
-                            case UICtrl.HTMLStrings.classes.inputNodeChk:
-                                cur.checked = false;
-                                break;
-                            case UICtrl.HTMLStrings.classes.inputNodeTxt:
-                                cur.textContent = '';
-                                break;
-                            case UICtrl.HTMLStrings.classes.inputNodeSplit:
-                                cur.outerHTML = '';
-                                break;
-                            default:
-                                console.log(cur.className);
-                                break;
-                            };
-    });
-       // set compile save and load text to ''
-        var resultsArray = listToArray(document.querySelectorAll(UICtrl.HTMLStrings.classes.resultBlock));
-        
-        resultsArray.forEach(function(cur){
-            cur.value = '';
-        });
-    };
+    function deleteCallout(){
+          
+    }
     
     function innit(){
-       console.log('innitRun'); 
+       console.log('innitRun'); if(document.querySelector(UICtrl.HTMLStrings.ids.compileHTML){
                                    document.querySelector(UICtrl.HTMLStrings.ids.compileHTML).addEventListener('click', loadAllHTML);
         
         document.querySelector(UICtrl.HTMLStrings.ids.addNewCallout).addEventListener('click', addNewCallout);
@@ -655,7 +605,9 @@ var appController = (function(dataCtrl, UICtrl){
                 target.target.parentNode.outerHTML = '';
             };
         });
-        document.querySelector(UICtrl.HTMLStrings.ids.resetAll).addEventListener('click', resetAllInput);
+    } else {
+        setTimeout(innit, 1000);
+    };
         
     };
     return {
@@ -666,7 +618,7 @@ var appController = (function(dataCtrl, UICtrl){
 
 
 
-setTimeout(appController.innit, 1000);
+appController.innit();
 
 
 
